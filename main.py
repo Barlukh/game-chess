@@ -1,0 +1,1 @@
+""" Main execution module of the game. """
