@@ -2,40 +2,50 @@
 
 import pygame
 
-class Board(pygame.sprite.Sprite):
+class Matrix():
     def __init__(self):
-        super().__init__()
-        self.squares = []
-        self.matrix = {}
-    
+        self.values = {}
+        self.create_matrix()
+
     def alternate(self):
         while True:
-          yield 1
           yield 0
-
-    def draw_matrix(self):
-        y = -50
+          yield 1
+       
+    def create_matrix(self):
+        y = -20
         colour_change = self.alternate()
         for number in "87654321":
             colour = next(colour_change)
-            x = 120
-            y += 70
+            x = 152
+            y += 71
             for letter in "abcdefgh":
-                rectangle = self.squares[colour].get_rect(topleft = (x, y))
-                self.matrix[letter + number] = (rectangle, colour)
-                screen.blit(self.squares[colour], (x, y))
+                self.values[letter + number] = (x, y, colour)
                 colour = next(colour_change)
-                x += 70
-    
-    def load_squares(self):
-        for name in ['square_brown_dark.png', 'square_brown_light.png']:
-            square = pygame.image.load(f'graphics/squares/{name}').convert()
-            square = pygame.transform.scale(square, (70, 70))
-            self.squares.append(square)
+                x += 71
 
-    def draw_board(self):
-        self.load_squares()
-        self.draw_matrix()
+class Square(pygame.sprite.Sprite):
+    def __init__(self, x, y, colour):
+        super().__init__()       
+        
+        if colour == 0:
+            self.image = pygame.image.load('graphics/squares/square_brown_light.png').convert()
+        else:
+            self.image = pygame.image.load('graphics/squares/square_brown_dark.png').convert()
+        
+        self.image = pygame.transform.scale(self.image, (71, 71))
+        self.rect = self.image.get_rect(center = (x, y))
+
+def draw_board():
+    matrix = Matrix()
+    squares = pygame.sprite.Group()
+    for value in matrix.values.values():  
+        x = value[0]
+        y = value[1]
+        colour = value[2]
+        squares.add(Square(x, y, colour))
+
+    squares.draw(screen)
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -44,15 +54,13 @@ pygame.display.set_caption('Chess')
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 
-chessboard = Board()
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit
             exit()
 
-    chessboard.draw_board()
+    draw_board()
 
     pygame.display.update()
     clock.tick(60)
