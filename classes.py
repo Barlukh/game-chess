@@ -1,31 +1,6 @@
-""" Module containing classes. """
+""" Module containing blueprints for sprite classes of squares and pieces. """
 
 import pygame
-
-class Matrix():
-    """ Class that creates and stores centered coordinates of the chessboard. """
-    def __init__(self):
-        self.values = {}
-        self.create_matrix()
-
-    def alternate(self):
-        """ Alternate between 0 and 1. """
-        while True:
-          yield 0
-          yield 1
-       
-    def create_matrix(self):
-        """ Create the matrix, store as dictionary values. """
-        y = -20
-        colour_change = self.alternate()
-        for number in "87654321":
-            colour = next(colour_change)
-            x = 152
-            y += 71
-            for letter in "abcdefgh":
-                self.values[letter + number] = (x, y, colour)
-                colour = next(colour_change)
-                x += 71
 
 class Square(pygame.sprite.Sprite):
     """ Sprite class for different coloured squares of the chessboard. """
@@ -38,4 +13,13 @@ class Square(pygame.sprite.Sprite):
             self.image = pygame.image.load('graphics/squares/square_brown_dark.png').convert()
         
         self.image = pygame.transform.scale(self.image, (71, 71))
+        self.rect = self.image.get_rect(center = (x, y))
+
+class Piece(pygame.sprite.Sprite):
+    """ Sprite class for chess pieces. """
+    def __init__(self, x, y, key):
+        super().__init__()       
+        
+        self.image = pygame.image.load(f'graphics/pieces/{key}.png').convert_alpha()        
+        self.image = pygame.transform.smoothscale(self.image, (51, 51))
         self.rect = self.image.get_rect(center = (x, y))
