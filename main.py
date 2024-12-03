@@ -2,17 +2,27 @@
 
 import pygame
 
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+icon = pygame.image.load('graphics/pieces/b_king.png')
+pygame.display.set_caption('Chess')
+pygame.display.set_icon(icon)
+clock = pygame.time.Clock()
+
 class Matrix():
+    """ Class that creates and stores centered coordinates of the chessboard. """
     def __init__(self):
         self.values = {}
         self.create_matrix()
 
     def alternate(self):
+        """ Alternate between 0 and 1. """
         while True:
           yield 0
           yield 1
        
     def create_matrix(self):
+        """ Create the matrix, store as dictionary values. """
         y = -20
         colour_change = self.alternate()
         for number in "87654321":
@@ -25,6 +35,7 @@ class Matrix():
                 x += 71
 
 class Square(pygame.sprite.Sprite):
+    """ Sprite class for different squares of the chessboard. """
     def __init__(self, x, y, colour):
         super().__init__()       
         
@@ -37,6 +48,7 @@ class Square(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = (x, y))
 
 def draw_board():
+    """ Draw all the squares of the chessboard. """
     matrix = Matrix()
     squares = pygame.sprite.Group()
     for value in matrix.values.values():  
@@ -46,13 +58,6 @@ def draw_board():
         squares.add(Square(x, y, colour))
 
     squares.draw(screen)
-
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-icon = pygame.image.load('graphics/pieces/b_king.png')
-pygame.display.set_caption('Chess')
-pygame.display.set_icon(icon)
-clock = pygame.time.Clock()
 
 while True:
     for event in pygame.event.get():
