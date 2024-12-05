@@ -11,15 +11,15 @@ def create_matrix():
     values = {}
     y = -20
     colour_change = alternate()
-    
-    for number in '87654321':
-        colour = next(colour_change)
-        x = 152
-        y += 71
-        for letter in 'abcdefgh':
-            values[letter + number] = (x, y, colour)
+    if len(values) == 0:
+        for number in '87654321':
             colour = next(colour_change)
-            x += 71
+            x = 152
+            y += 71
+            for letter in 'abcdefgh':
+                values[letter + number] = (x, y, colour)
+                colour = next(colour_change)
+                x += 71
     return values
 
 def create_positions():
