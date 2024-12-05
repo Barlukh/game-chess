@@ -3,6 +3,7 @@
 import pygame
 import classes
 import coordinates
+import copy
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -10,6 +11,13 @@ icon = pygame.image.load('graphics/pieces/b_king.png')
 pygame.display.set_caption('Chess')
 pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
+
+def check_overlap():
+    overlap = False
+    for piece in pieces:
+        if piece.rect.colliderect(selected.sprite.rect):
+            overlap = True
+    return overlap
 
 def get_mouse():
     """ Get and return a tuple of x and y position of the cursor. """
@@ -41,12 +49,11 @@ def create_board():
 
 pieces = pygame.sprite.Group()
 squares = pygame.sprite.Group()
+selected = pygame.sprite.GroupSingle()
 create_board()
 create_pieces()
 
 chessboard = pygame.image.load('graphics/squares/chessboard.png')
-
-# def get_selected(piece: object):
 
 while True:
     for event in pygame.event.get():
@@ -56,16 +63,28 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             for piece in pieces:
                 if piece.rect.collidepoint(get_mouse()):
-                    piece.image = pygame.transform.smoothscale(piece.image, (61, 61))
-                    piece.rect = piece.image.get_rect(center = (get_mouse()))
-    #                 selected = pygame.sprite.GroupSingle()
-    #                 selected.add(classes.Piece)
-
-    # # selected.image = pygame.transform.smoothscale(selected.image, (61, 61))
-    # # selected.rect = selected.image.get_rect(center = (get_mouse()))
+                    piece.remove(pieces)
+                    piece.add(selected)
+                    original = copy.copy(piece)
+        
+        if event.type == pygame.MOUSEBUTTONUP:
+            if check_overlap() == True:
+                selected.sprite.rect.center = original.rect.center
+                selected.sprite.add(pieces)
+                selected.sprite.remove(selected)
+            else:
+                for square in squares:
+                    if square.rect.collidepoint(get_mouse()):
+                        selected.sprite.rect.center = square.rect.center
+                        selected.sprite.add(pieces)
+                        selected.sprite.remove(selected)
+    
+    if len(selected) != 0:
+        selected.sprite.rect = selected.sprite.image.get_rect(center = (get_mouse()))
     
     screen.blit(chessboard, (0, 0))
     pieces.draw(screen)
+    selected.draw(screen)
 
     pygame.display.update()
     clock.tick(60)
