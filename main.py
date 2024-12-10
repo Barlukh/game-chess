@@ -13,6 +13,7 @@ pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
 
 def check_overlap():
+    """ Check for a collision of pieces. Return bool. """
     overlap = False
     for piece in pieces:
         if piece.rect.colliderect(selected.sprite.rect):
