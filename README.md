@@ -13,5 +13,5 @@ There is no functionality to play against AI. Created with Pygame.
 - There is also a snap mechanic, so the dropped piece centers itself onto the corresponding square under the mouse cursor.
 
 ## Installation
-No installation. Run it in a Python interpreter or terminal.
-When executed, a separate window is drawn and the while loop in the 'main' module handles the updates. Close the window to quit.
+No installation. Run the code in main.py.
+Separate window is drawn and the while loop in the 'main' module handles the updates. Close the window to quit.
