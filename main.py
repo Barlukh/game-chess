@@ -1,4 +1,4 @@
-""" Main execution module of the game. """
+""" Main module of the game. Sets the initial conditions and updates through whileTrue loop. """
 
 import pygame
 import classes

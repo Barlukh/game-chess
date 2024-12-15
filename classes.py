@@ -1,4 +1,4 @@
-""" Module containing blueprints for sprite classes of squares and pieces. """
+""" Module containing sprite classes for squares and pieces. """
 
 import pygame
 
