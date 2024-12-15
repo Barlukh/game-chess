@@ -1,3 +1,5 @@
+![screenshot](screenshot.png)
+
 ## Introduction
 Classic game of chess. This is a functional chessboard with all the pieces and a manual mouse picking mechanic.
 There is no functionality to play against AI. Created with Pygame.
