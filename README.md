@@ -15,3 +15,7 @@ There is no functionality to play against AI. Created with Pygame.
 ## Installation
 No installation. Run the code in main.py.
 Separate window is drawn and the while loop in the 'main' module handles the updates. Close the window to quit.
+
+## Credits & License
+All original images (squares and pieces) created by John Pablok. [link](https://opengameart.org/content/chess-pieces-and-board-squares)<br/>
+License: CC BY-SA 3.0
