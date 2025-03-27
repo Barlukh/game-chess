@@ -1,8 +1,12 @@
-![screenshot](screenshot.png)
+# Chess
 
-## Introduction
+<p align="center">
+    <img width="800" src="screenshot.png" alt="screenshot">
+</p>
+
+## About
 Classic game of chess. This is a functional chessboard with all the pieces and a manual mouse picking mechanic.
-There is no functionality to play against AI. Created with Pygame.
+No functionality to play against AI, just a prototype of a chessboard. Created with Pygame.
 
 ## Functionality
 - Chessboard is built from scratch with the images of sqaures in the 'graphics' folder.
@@ -13,8 +17,9 @@ There is no functionality to play against AI. Created with Pygame.
 - There is also a snap mechanic, so the dropped piece centers itself onto the corresponding square under the mouse cursor.
 
 ## Installation
-No installation. Run the code in main.py.
-Separate window is drawn and the while loop in the 'main' module handles the updates. Close the window to quit.
+- Ensure Python is installed on your system.
+- Use pip to install all required packages listed in requirements.txt (pip install -r requirements.txt).
+- Execute the main script to run the program (python main.py).
 
 ## Credits & License
 All original images (squares and pieces) created by John Pablok. [link](https://opengameart.org/content/chess-pieces-and-board-squares)<br/>
