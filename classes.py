@@ -1,4 +1,10 @@
-""" Module containing sprite classes for squares and pieces. """
+"""
+Project Title: Chess
+Filename: classes.py
+
+Description:
+    Module containing sprite classes for squares and pieces.
+"""
 
 import pygame
 

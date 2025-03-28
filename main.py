@@ -1,4 +1,13 @@
-""" Main module of the game. Sets the initial conditions and updates through whileTrue loop. """
+"""
+Project Title: Chess
+Filename: main.py
+
+Description:
+    Functional chessboard for the game of chess. Project created with the Pygame library.
+    All original images (squares and pieces) created by John Pablok.
+    Requirements: Python and Pygame.
+    Main file of the project. Sets the initial conditions and updates through whileTrue loop.
+"""
 
 import pygame
 import classes

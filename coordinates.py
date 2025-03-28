@@ -1,11 +1,11 @@
-""" Create dictionaries of starting coordinates for chessboard squares and pieces. """
+"""
+Project Title: Chess
+Filename: coordinates.py
 
-def alternate():
-    """ Alternate between integers 0 and 1 and yield the result. """
-    while True:
-        yield 0
-        yield 1
-    
+Description:
+    Create dictionaries of starting coordinates for chessboard squares and pieces.
+"""
+
 def create_matrix():
     """ Create positional matrix of the chessboard, return a dictionary. """
     values = {}
@@ -21,6 +21,12 @@ def create_matrix():
                 colour = next(colour_change)
                 x += 71
     return values
+
+def alternate():
+    """ Alternate between integers 0 and 1 and yield the result. """
+    while True:
+        yield 0
+        yield 1
 
 def create_positions():
     """ Create starting positions for all pieces, return a dictionary. """
