@@ -6,7 +6,7 @@
 
 ## About
 Classic game of chess. This is a functional chessboard with all the pieces and a manual mouse picking mechanic.
-No functionality to play against AI, just a prototype of a chessboard. Created with Pygame.
+No other functionality, just a prototype of a chessboard. Created with Pygame.
 
 ## Functionality
 - Chessboard is built from scratch with the images of sqaures in the 'graphics' folder.
