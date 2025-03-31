@@ -64,6 +64,7 @@ create_board()
 create_pieces()
 
 chessboard = pygame.image.load('graphics/squares/chessboard.png')
+picked_status = False
 
 while True:
     for event in pygame.event.get():
@@ -76,18 +77,21 @@ while True:
                     piece.remove(pieces)
                     piece.add(selected)
                     original = copy.copy(piece)
-        
+                    picked_status = True
+
         if event.type == pygame.MOUSEBUTTONUP:
-            if check_overlap() == True:
-                selected.sprite.rect.center = original.rect.center
-                selected.sprite.add(pieces)
-                selected.sprite.remove(selected)
-            else:
-                for square in squares:
-                    if square.rect.collidepoint(get_mouse()):
-                        selected.sprite.rect.center = square.rect.center
-                        selected.sprite.add(pieces)
-                        selected.sprite.remove(selected)
+            if picked_status == True:
+                if check_overlap() == True:
+                    selected.sprite.rect.center = original.rect.center
+                    selected.sprite.add(pieces)
+                    selected.sprite.remove(selected)
+                else:
+                    for square in squares:
+                        if square.rect.collidepoint(get_mouse()):
+                            selected.sprite.rect.center = square.rect.center
+                            selected.sprite.add(pieces)
+                            selected.sprite.remove(selected)
+                picked_status = False
     
     if len(selected) != 0:
         selected.sprite.rect = selected.sprite.image.get_rect(center = (get_mouse()))
