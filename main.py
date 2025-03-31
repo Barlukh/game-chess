@@ -64,6 +64,7 @@ create_board()
 create_pieces()
 
 chessboard = pygame.image.load('graphics/squares/chessboard.png')
+board_rect = pygame.Rect(117, 16, 568, 568)
 picked_status = False
 
 while True:
@@ -72,26 +73,26 @@ while True:
             pygame.quit
             exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
-            for piece in pieces:
-                if piece.rect.collidepoint(get_mouse()):
-                    piece.remove(pieces)
-                    piece.add(selected)
-                    original = copy.copy(piece)
-                    picked_status = True
-
-        if event.type == pygame.MOUSEBUTTONUP:
-            if picked_status == True:
-                if check_overlap() == True:
-                    selected.sprite.rect.center = original.rect.center
-                    selected.sprite.add(pieces)
-                    selected.sprite.remove(selected)
+            if board_rect.collidepoint(get_mouse()):
+                if picked_status == True:
+                    if check_overlap() == True:
+                        selected.sprite.rect.center = original.rect.center
+                        selected.sprite.add(pieces)
+                        selected.sprite.remove(selected)
+                    else:
+                        for square in squares:
+                            if square.rect.collidepoint(get_mouse()):
+                                selected.sprite.rect.center = square.rect.center
+                                selected.sprite.add(pieces)
+                                selected.sprite.remove(selected)
+                    picked_status = False
                 else:
-                    for square in squares:
-                        if square.rect.collidepoint(get_mouse()):
-                            selected.sprite.rect.center = square.rect.center
-                            selected.sprite.add(pieces)
-                            selected.sprite.remove(selected)
-                picked_status = False
+                    for piece in pieces:
+                        if piece.rect.collidepoint(get_mouse()):
+                            piece.remove(pieces)
+                            piece.add(selected)
+                            original = copy.copy(piece)
+                            picked_status = True
     
     if len(selected) != 0:
         selected.sprite.rect = selected.sprite.image.get_rect(center = (get_mouse()))
