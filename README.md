@@ -15,6 +15,7 @@ No other functionality, just a prototype of a chessboard. Created with Pygame.
 - Game can be operated with mouse drag & drop mechanic.
 - The program checks for a collision if trying to drop a piece onto another piece.
 - There is also a snap mechanic, so the dropped piece centers itself onto the corresponding square under the mouse cursor.
+- No existing fucntionality to remove pieces from the board implemented!
 
 ## Installation
 - Ensure Python is installed on your system.
